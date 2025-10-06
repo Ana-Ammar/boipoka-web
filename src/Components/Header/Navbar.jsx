@@ -1,12 +1,37 @@
+import { useState } from "react";
 import { Link, NavLink } from "react-router";
 
 const Navbar = () => {
+  const [clicked, setClicked] = useState('Home');
 
-    const links = <>
-        <Link to="/" className="border-1 border-green-700 text-green-700 py-1.5 px-2.5 rounded-[8px]">Home</Link>
-        <Link to="/listed-books" >Listed Books</Link>
-        <Link>Pages to Read</Link>
+  const links = (
+    <>
+      <Link
+        to="/"
+        onClick={() => {setClicked('Home')}}
+        className={` ${
+          clicked === 'Home' ?
+          "border-1 border-green-700 text-green-700 py-1.5 px-2.5 rounded-[8px]"
+         : ''}`}
+      >
+        Home
+      </Link>
+      <Link to="/listed-books" onClick={() => {setClicked('Listed Books')}}
+      className={` ${
+          clicked === 'Listed Books' ?
+          "border-1 border-green-700 text-green-700 py-1.5 px-2.5 rounded-[8px]"
+         : ''}`}>
+        Listed Books
+      </Link>
+      <Link to='/chart'
+      onClick={() => {setClicked('Pages to Read')}}
+      className={` ${
+          clicked === 'Pages to Read' ?
+          "border-1 border-green-700 text-green-700 py-1.5 px-2.5 rounded-[8px]"
+         : ''}`}
+      >Pages to Read</Link>
     </>
+  );
   return (
     <div className="navbar bg-base-100 shadow-sm px-8">
       <div className="navbar-start">
@@ -32,14 +57,16 @@ const Navbar = () => {
             tabIndex={0}
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
           >
-          {links}
+            {links}
           </ul>
         </div>
-        <NavLink to='/' className="font-bold text-2xl">Book Vibe</NavLink>
+        <NavLink to="/" className="font-bold text-2xl">
+          Book Vibe
+        </NavLink>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1 flex gap-6 items-center">
-            {links}
+          {links}
         </ul>
       </div>
       <div className="navbar-end flex gap-4">

@@ -11,6 +11,7 @@ const Listed = () => {
   const booksData = useLoaderData()  
   const [myReadList, setMyReadList] = useState([])
   const [myWishList, setMyWishList] = useState([])
+  const [sortOrder, setSortOrder] = useState('none')
 
 
   // Read List
@@ -41,13 +42,50 @@ const Listed = () => {
   }
 
 
+  // Sort by for Readlist
+   const handleSortOrderReadlist = () => {
+    if(sortOrder === 'rating') {
+      return [...myReadList].sort((book1, book2) => book2.rating - book1.rating)
+    }
+    else if(sortOrder === 'pages') {
+      return [...myReadList].sort((book1, book2) => book2.totalPages - book1.totalPages)
+    }
+    else if(sortOrder === 'publishYear') {
+      return [...myReadList].sort((book1, book2) => book1.yearOfPublishing - book2.yearOfPublishing)
+    }
+    else{
+      return myReadList
+    }
+  }
+
+
+  // Sort by for WishList
+  const handleSortOrderWishlist = () => {
+    if(sortOrder === 'rating') {
+      return [...myWishList].sort((book1, book2) => book2.rating - book1.rating)
+    }
+    else if(sortOrder === 'pages') {
+      return [...myWishList].sort((book1, book2) => book2.totalPages - book1.totalPages)
+    }
+    else if(sortOrder === 'publishYear') {
+      return [...myWishList].sort((book1, book2) => book1.yearOfPublishing - book2.yearOfPublishing)
+    }
+    else{
+      return myWishList
+    }
+  }
+
+
+
+
   return (
     <section className="max-w-7xl mx-auto px-8">
       <div className="h-24 rounded-2xl bg-[#13131310] flex justify-center items-center my-8">
         <h1 className="font-bold text-[28px]">Books</h1>
       </div>
 
-      <Sortby></Sortby>
+      <Sortby sortOrder={sortOrder}
+      setSortOrder={setSortOrder}></Sortby>
 
       <section className="pb-10">
         <Tabs>
@@ -62,7 +100,7 @@ const Listed = () => {
         <TabPanel>
             <div className="my-8">
               {
-              myReadList.map(readedBook => <ReadList 
+              handleSortOrderReadlist().map(readedBook => <ReadList 
               removeHandleBtn={removeHandleBtn}
               key={readedBook.bookId} 
               readedBook={readedBook}></ReadList>)
@@ -76,7 +114,7 @@ const Listed = () => {
         <TabPanel>
             <div className="my-8">
               {
-              myWishList.map(whishBook => <WishList 
+              handleSortOrderWishlist().map(whishBook => <WishList 
               removeHandleBtnFromWishList={removeHandleBtnFromWishList}
               key={whishBook.bookId} 
               whishBook={whishBook}></WishList>)
