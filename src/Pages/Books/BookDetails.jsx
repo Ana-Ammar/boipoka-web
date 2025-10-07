@@ -35,23 +35,23 @@ const BookDetails = () => {
   
 
   return (
-    <div className="max-w-7xl mx-auto px-8 my-20">
+    <div className="max-w-7xl mx-auto px-4 md:px-8 my-20">
 
-      <div className="flex gap-8">
+      <div className="md:flex gap-8">
 
-        <figure className="bg-[#F3F3F3] rounded-xl w-6/12 flex justify-center items-center">
+        <figure className="bg-[#F3F3F3] rounded-xl py-8 md:py-0 md:w-6/12 flex justify-center items-center">
           <img
-            className='h-9/12 rounded-xl'
+            className='md:h-9/12 h-[300px] rounded-xl'
             src={image}
             alt={bookName}
           />
         </figure>
 
-        <div className="w-6/12 flex flex-col justify-center">
+        <div className="md:w-6/12 flex flex-col justify-center mt-7 md:mt-0">
           <h2 className="text-4xl font-bold mb-4 text-[#131313]">{bookName}</h2>
-          <p className="text-xl font-medium mb-6 text-[#13131395]">By: {author}</p>
+          <p className="md:text-xl font-medium md:mb-6 text-[#13131395]">By: {author}</p>
           <div className="divider"></div>
-          <p className="font-medium text-xl text-[#13131395]">{category}</p>
+          <p className="font-medium md:text-xl text-[#13131395]">{category}</p>
           <div className="divider"></div>
           <p className="my-6 text-[#13131390]"><span className="text-[#131313] font-bold">Review: </span>{review}</p>
           <div>

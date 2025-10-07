@@ -1,39 +1,36 @@
-import { useState } from "react";
-import { Link, NavLink } from "react-router";
+import { Link, NavLink, useLocation } from "react-router";
 
 const Navbar = () => {
-  const [clicked, setClicked] = useState('Home');
+  const location = useLocation()
 
   const links = (
     <>
       <Link
         to="/"
-        onClick={() => {setClicked('Home')}}
         className={` ${
-          clicked === 'Home' ?
+          location.pathname === "/" ?
           "border-1 border-green-700 text-green-700 py-1.5 px-2.5 rounded-[8px]"
          : ''}`}
       >
         Home
       </Link>
-      <Link to="/listed-books" onClick={() => {setClicked('Listed Books')}}
+      <Link to="/listed-books"
       className={` ${
-          clicked === 'Listed Books' ?
+          location.pathname === "/listed-books" ?
           "border-1 border-green-700 text-green-700 py-1.5 px-2.5 rounded-[8px]"
          : ''}`}>
         Listed Books
       </Link>
       <Link to='/chart'
-      onClick={() => {setClicked('Pages to Read')}}
       className={` ${
-          clicked === 'Pages to Read' ?
+          location.pathname === "/chart" ?
           "border-1 border-green-700 text-green-700 py-1.5 px-2.5 rounded-[8px]"
          : ''}`}
       >Pages to Read</Link>
     </>
   );
   return (
-    <div className="navbar bg-base-100 shadow-sm px-8">
+    <div className="navbar bg-base-100 shadow-sm md:px-8">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -60,7 +57,7 @@ const Navbar = () => {
             {links}
           </ul>
         </div>
-        <NavLink to="/" className="font-bold text-2xl">
+        <NavLink to="/" className="font-bold text-xl md:text-2xl">
           Book Vibe
         </NavLink>
       </div>
@@ -69,9 +66,9 @@ const Navbar = () => {
           {links}
         </ul>
       </div>
-      <div className="navbar-end flex gap-4">
-        <a className="btn bg-[#23BE0A] text-white">Sign in</a>
-        <a className="btn bg-[#59C6D2] text-white">Sign up</a>
+      <div className="navbar-end flex md:gap-4 gap-2">
+        <a className="btn btn-sm md:btn-md bg-[#23BE0A] text-white">Sign in</a>
+        <a className="btn btn-sm md:btn-md bg-[#59C6D2] text-white">Sign up</a>
       </div>
     </div>
   );

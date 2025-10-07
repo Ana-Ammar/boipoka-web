@@ -79,7 +79,7 @@ const Listed = () => {
 
 
   return (
-    <section className="max-w-7xl mx-auto px-8">
+    <section className="max-w-7xl mx-auto md:px-8 px-3">
       <div className="h-24 rounded-2xl bg-[#13131310] flex justify-center items-center my-8">
         <h1 className="font-bold text-[28px]">Books</h1>
       </div>

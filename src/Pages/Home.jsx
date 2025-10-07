@@ -3,7 +3,7 @@ import Books from "./Books/Books";
 
 const Home = () => {
     return (
-        <div className="px-8">
+        <div className="md:px-8 px-3">
             <Banner></Banner>
             <Books></Books>
         </div>
